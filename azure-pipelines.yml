@@ -13,6 +13,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Write-Output $pwd
+    script: |
+      Write-Output $pwd
       Get-ChildItem $pwd -Recurse
-      $PSVersionTable'
+      $PSVersionTable

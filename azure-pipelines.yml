@@ -19,4 +19,5 @@ steps:
     script: |
       Write-Output $pwd
       $Username = '$(UserName)'
+      $Password = '$(Password)'
       Get-ChildItem variable:\ | Select-Object Name,Value

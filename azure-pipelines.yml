@@ -17,7 +17,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Write-Output $pwd
+      Install-Module AzureAD -Force
+      Import-Module AzureAD
       $Username = '$(Username)'
-      $Password = '$(Password)'
-      Get-ChildItem variable:\ | Select-Object Name,Value
+      $Password = '$(Password)' | ConvertTo-SecureString -asPlainText -Force
+      $Credential = New-Object System.Management.Automation.PSCredential($Username,$Password)
+      Connect-AzureAD -Credential $Credential
+      Get-AzureADUser

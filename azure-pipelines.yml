@@ -18,6 +18,7 @@ steps:
     targetType: 'inline'
     script: |
       $WorkingDirectory = $($PWD)
+      Install-Module Pester -Force
       Install-Module dxExchange.Online -Force
       $Username = '$(Username)'
       $Password = '$(Password)' | ConvertTo-SecureString -AsPlainText -Force

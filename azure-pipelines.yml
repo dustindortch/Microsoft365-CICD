@@ -15,5 +15,4 @@ steps:
     targetType: 'inline'
     script: |
       Write-Output $pwd
-      Get-ChildItem $pwd -Recurse
-      $PSVersionTable
+      Get-ChildItem variable:\

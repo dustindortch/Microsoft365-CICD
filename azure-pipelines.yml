@@ -14,4 +14,4 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'Write-Output $pwd
-      Get-ChildItem .\ -Recurse'
+      Get-ChildItem $pwd -Recurse'

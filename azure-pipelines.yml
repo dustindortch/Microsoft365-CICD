@@ -19,7 +19,8 @@ steps:
     script: |
       Install-Module dxExchange.Online -Force
       $Username = '$(Username)'
-      $Password = '$(Password)' | ConvertTo-SecureString -asPlainText -Force
+      $Password = '$(Password)' | ConvertTo-SecureString -AsPlainText -Force
       $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
       Import-Module dxExchange.Online
       Get-OrganizationConfig | Select-Object OAuth2ClientProfileEnabled
+      Get-PSSession | Remove-PSSession

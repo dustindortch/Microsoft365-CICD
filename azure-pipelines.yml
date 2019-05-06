@@ -17,13 +17,13 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $PWD
+      $WorkingDirectory = $($PWD)
       Install-Module dxExchange.Online -Force
       $Username = '$(Username)'
       $Password = '$(Password)' | ConvertTo-SecureString -AsPlainText -Force
       $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
       Import-Module dxExchange.Online
-      $PWD
-      D:\a\1\s\Exchange\OrganizationConfig.Remediation.ps1
+      cd $WorkingDirectory
+      .\Exchange\OrganizationConfig.Remediation.ps1
       Invoke-Pester
       Get-PSSession | Remove-PSSession

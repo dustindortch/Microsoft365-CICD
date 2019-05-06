@@ -18,6 +18,6 @@ steps:
     targetType: 'inline'
     script: |
       Write-Output $pwd
-      $Username = '$(UserName)'
+      $Username = '$(Username)'
       $Password = '$(Password)'
       Get-ChildItem variable:\ | Select-Object Name,Value

@@ -18,4 +18,5 @@ steps:
     targetType: 'inline'
     script: |
       Write-Output $pwd
+      $Username = $(UserName)
       Get-ChildItem variable:\ | Select-Object Name,Value

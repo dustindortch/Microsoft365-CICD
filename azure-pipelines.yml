@@ -24,6 +24,6 @@ steps:
       $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
       Import-Module dxExchange.Online
       cd $WorkingDirectory
-      .\Exchange\OrganizationConfig.Remediation.ps1 -Verbose
+      .\Exchange\OrganizationConfig.Remediation.ps1 -All -Verbose
       Invoke-Pester
       Get-PSSession | Remove-PSSession

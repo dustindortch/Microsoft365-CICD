@@ -1,10 +1,13 @@
 [CmdletBinding()]
 Param (
-    [Parameter(ValueFromPipelineByPropertyName)]
+    [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'CI')]
+    [Switch]$All,
+
+    [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'CD')]
     [int]
     $FailedCount,
 
-    [Parameter(ValueFromPipelineByPropertyName)]
+    [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'CD')]
     $TestResult
 )
 
@@ -12,11 +15,14 @@ $Expected = Get-Content "$PSScriptRoot\OrganizationConfig.json" | ConvertFrom-Js
 
 Write-Verbose '****Initiating remediation****'
 
-If ($FailedCount -ne 0) {
+If ($FailedCount -ne 0 -or $All) {
     $OrganizationConfig = @{ }
 
     Switch ($TestResult.Context) {
-        'OrganizationConfig\Modern Authentication' {
+        ( {
+            $PSItem -eq 'OrganizationConfig\Modern Authentication' -or
+            $Null -eq $PSItem
+        }) {
             Write-Verbose '    *Remediating Modern Authentication'
             $Property = 'OAuth2ClientProfileEnabled'
             $OrganizationConfig.Add($Property, $Expected.$($Property))

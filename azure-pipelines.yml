@@ -7,13 +7,23 @@ trigger:
 - development
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
+
+variables:
+- group: CI-Variables
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $WorkingDirectory = $($PWD)
+      Install-Module dxExchange.Online -Force
+      $Username = '$(Username)'
+      $Password = '$(Password)' | ConvertTo-SecureString -AsPlainText -Force
+      $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
+      Import-Module dxExchange.Online
+      cd $WorkingDirectory
+      .\Exchange\OrganizationConfig.Remediation.ps1 -Verbose
+      Invoke-Pester
+      Get-PSSession | Remove-PSSession

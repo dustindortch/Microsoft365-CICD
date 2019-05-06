@@ -17,10 +17,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Install-Module AzureAD -Force
-      Import-Module AzureAD
+      Install-Module dxExchange.Online -Force
       $Username = '$(Username)'
       $Password = '$(Password)' | ConvertTo-SecureString -asPlainText -Force
-      $Credential = New-Object System.Management.Automation.PSCredential($Username,$Password)
-      Connect-AzureAD -Credential $Credential
-      Get-AzureADUser
+      $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
+      Import-Module dxExchange.Online
+      Get-OrganizationConfig | Select-Object OAuth2ClientProfileEnabled

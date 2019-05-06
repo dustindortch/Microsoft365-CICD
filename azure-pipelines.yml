@@ -12,5 +12,5 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    filePath: '.\Exchange\OrganizationConfig.Remediate.ps1'
+    filePath: '.\Microsoft365-CICD\Exchange\OrganizationConfig.Remediate.ps1'
     arguments: '-All'

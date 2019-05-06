@@ -9,10 +9,13 @@ trigger:
 pool:
   vmImage: 'windows-2019'
 
+variables:
+- group: CI-Variables
+
 steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       Write-Output $pwd
-      Get-ChildItem variable:\
+      Get-ChildItem variable:\ | Select-Object Name,Value

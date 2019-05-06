@@ -22,5 +22,6 @@ steps:
       $Password = '$(Password)' | ConvertTo-SecureString -AsPlainText -Force
       $ExoCredential = New-Object System.Management.Automation.PSCredential($Username,$Password)
       Import-Module dxExchange.Online
-      Get-OrganizationConfig | Select-Object OAuth2ClientProfileEnabled
+      .\Exchange\OrganizationConfig.Remediation.ps1
+      Invoke-Pester
       Get-PSSession | Remove-PSSession

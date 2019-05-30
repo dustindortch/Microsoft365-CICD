@@ -10,7 +10,7 @@ Describe 'Exchange Online' {
             }
         }
         
-        Content 'Auto Expanding Archives' {
+        Context 'Auto Expanding Archives' {
             It 'should be enabled' {
                 $Property = 'AutoExpandingArchiveEnabled'
                 $Actual.$($Property) | Should Be $Expected.$($Property)

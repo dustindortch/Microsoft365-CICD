@@ -27,6 +27,15 @@ If ($FailedCount -ne 0 -or $All) {
             $Property = 'OAuth2ClientProfileEnabled'
             $OrganizationConfig.Add($Property, $Expected.$($Property))
         }
+        ( {
+            $PSItem -eq 'OrganizationConfig\Auto Expanding Archives' -or
+            $Null -eq $PSItem
+        }) {
+            Write-Verbose '    *Remediating Auto Expanding Archives'
+            $Property = 'AutoExpandingArchiveEnabled'
+            $OrganizationConfig.Add($Property, $Expected.$($Property))
+        }
+        
     }
 
     Set-OrganizationConfig @OrganizationConfig

@@ -9,5 +9,12 @@ Describe 'Exchange Online' {
                 $Actual.$($Property) | Should Be $Expected.$($Property)
             }
         }
+        
+        Content 'Auto Expanding Archives' {
+            It 'should be enabled' {
+                $Property = 'AutoExpandingArchiveEnabled'
+                $Actual.$($Property) | Should Be $Expected.$($Property)
+            }
+        }
     }
 }

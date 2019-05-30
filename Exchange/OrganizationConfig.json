@@ -1,3 +1,4 @@
 {
-    "OAuth2ClientProfileEnabled": true
+    "OAuth2ClientProfileEnabled": true,
+    "AutoExpandingArchiveEnabled": true
 }

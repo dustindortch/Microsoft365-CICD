@@ -32,8 +32,9 @@ If ($FailedCount -ne 0 -or $All) {
             $Null -eq $PSItem
         }) {
             Write-Verbose '    *Remediating Auto Expanding Archives'
-            $Property = 'AutoExpandingArchiveEnabled'
-            $OrganizationConfig.Add($Property, $Expected.$($Property))
+            $CmdProperty = 'AutoExpandingArchive'
+            $ConfigProperty = 'AutoExpandingArchiveEnabled'
+            $OrganizationConfig.Add($CmdProperty, $Expected.$($ConfigProperty))
         }
         
     }

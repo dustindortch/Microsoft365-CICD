@@ -14,6 +14,7 @@ variables:
 
 steps:
 - task: PowerShell@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/development'))
   inputs:
     targetType: 'inline'
     script: |

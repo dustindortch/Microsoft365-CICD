@@ -1,6 +1,6 @@
 Describe 'Exchange Online' {
     Context 'OrganizationConfig' {
-        $Expected = Get-Content "$PSScriptRoot\OrganizationConfig.jscon" | ConvertFrom-Json
+        $Expected = Get-Content "$PSScriptRoot\OrganizationConfig.json" | ConvertFrom-Json
         $Actual = Get-OrganizationConfig
 
         Context 'Modern Authentication' {
